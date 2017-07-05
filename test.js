@@ -24,6 +24,8 @@ gschema.type("Posts").implements("List").def(`
     content: String
 `);
 
+gschema.type("Response");
+
 gschema.enum("OrderStatus").def(`
     PENDING
     PROCESSING
@@ -34,6 +36,10 @@ gschema.enum("OrderStatus").def(`
 
 gschema.mutation(`
     createToken: Post
+`);
+
+gschema.mutation(`
+    postCreate(input: PostInput): Response
 `);
 
 const defs = gschema.build();
