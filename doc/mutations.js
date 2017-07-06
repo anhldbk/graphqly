@@ -9,15 +9,4 @@ gschema
     const { post } = args;
   });
 
-gschema
-  .mutation("userLogin($username: String!, $password: String!): Response")
-  .variables({
-    username: "anhld",
-    password: "123"
-  })
-  .resolve((root, args, context) => {
-    // can invoke other query and mutation method
-    gschema.mutation("tokenCreate").params({ username, role }).then();
-  });
-
 // mutations can be hooked also

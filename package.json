@@ -22,6 +22,8 @@
     "easy"
   ],
   "dependencies": {
-    "lodash": "^4.17.4"
+    "gql": "^1.1.2",
+    "lodash": "^4.17.4",
+    "react-apollo": "^1.4.2"
   }
 }
