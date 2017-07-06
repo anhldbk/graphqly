@@ -36,11 +36,13 @@ gschema.enum("OrderStatus").def(`
 
 gschema.mutation(`
     createToken: Post
-`);
+`).resolve(() => {
+});
 
 gschema.mutation(`
-    postCreate(input: PostInput): Response
-`);
+    postCreate(input: PostInput): Int
+`).resolve(() => {
+});
 
 const defs = gschema.build();
 
