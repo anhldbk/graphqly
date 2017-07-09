@@ -1,5 +1,5 @@
-const gBuilder = require("./lib/schema");
+const SchemaBuilder = require("./lib/schema/builder");
 
 module.exports = {
-  gBuilder
+  createBuilder: SchemaBuilder.create
 };
