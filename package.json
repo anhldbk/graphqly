@@ -1,29 +1,34 @@
 {
-  "name": "graphqly",
-  "version": "0.0.1",
-  "description": "GraphQL made easy",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/anhldbk/graphqly.git"
-  },
-  "author": "Anh Le",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/anhldbk/graphqly/issues"
-  },
-  "homepage": "https://github.com/anhldbk/graphqly#readme",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "GraphQL",
-    "made",
-    "easy"
-  ],
-  "dependencies": {
-    "gql": "^1.1.2",
-    "lodash": "^4.17.4",
-    "react-apollo": "^1.4.2"
-  }
+    "name": "graphqly",
+    "version": "0.1.0",
+    "description": "GraphQL made easy",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/anhldbk/graphqly.git"
+    },
+    "author": "Anh Le",
+    "license": "GPL-3.0",
+    "bugs": {
+        "url": "https://github.com/anhldbk/graphqly/issues"
+    },
+    "homepage": "https://github.com/anhldbk/graphqly#readme",
+    "scripts": {
+        "test": "./node_modules/.bin/mocha --reporter spec"
+    },
+    "keywords": [
+        "GraphQL",
+        "made",
+        "easy"
+    ],
+    "dependencies": {
+        "gql": "^1.1.2",
+        "graphql-tools": "^1.1.0",
+        "lodash": "^4.17.4",
+        "react-apollo": "^1.4.2"
+    },
+    "devDependencies": {
+        "chai": "^4.0.2",
+        "mocha": "^3.4.2"
+    }
 }
