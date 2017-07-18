@@ -3,7 +3,7 @@ Graphqly
 
 `Graphqly` is a library to reduce the complexity of developing Graphql services.
 
-### Motivation
+### 1. Motivation
 
 I think it's `complicated` to develop & maintain Graphql services (mainly their schemas). Let's look at how we currently define such schemas:
 
@@ -92,7 +92,7 @@ In my opinion, there are several things to pay attention to:
 
 `Graphqly` is designed to solve above problems elegantly.
 
-### Installation
+### 2. Installation
 
 ```
 npm install graphqly --save
@@ -101,9 +101,11 @@ npm install graphqly --save
 # yarn add graphqly
 ```
 
-### Example
+### 3. Example
 
 For more information, please visit repo [graphqly-demo](https://github.com/anhldbk/graphqly-demo)
+
+#### 3.1 Definitions
 
 ```js
 import graphly from "graphqly";
@@ -152,7 +154,9 @@ gBuilder
 const schema = gBuilder.build(); // inside, `makeExecutableSchema` is invoked
 ```
 
-Last but not least, we may reuse other definitions by grouping them into providers:
+#### 3.2 Reusability
+
+We may reuse other definitions by grouping them into providers:
 
 ```js
 function Brand(builder){
@@ -171,13 +175,61 @@ function Brand(builder){
 gBuilder.use(Brand) // it's fun, right?
 ```
 
-### Incoming features
+#### 3.3 Extendability
+`Graphqly` can be extended by using hooks. For example, we can have features of logging, caching, authorizing... through hooks.
+
+`Graphqly` has 2 kinds of hooks:
+- `Global hooks` in SchemaBuilder
+- `Local hooks` in each operations (queries or mutations)
+
+There are 4 hook points, including `pre.query`, `post.query`, `pre.mutation`, `post.mutation`.
+
+```js
+// Global hook
+gBuilder.hook({
+    options: {
+        point: "pre.query"
+    },
+    handle: function(opts){
+        return function(root, args, context, done){
+          // `this` is binded to gBuilder
+          console.log("Logging...");
+          // if you invoke done(value), resolving functions will not be called
+          // the promise chain will stop immediately
+          return [root, args, context];
+        };
+    }
+});
+
+// Local hook
+gBuilder
+    .query("products(limit: Int = 20, offset: Int = 0, filter: ProductFilter): Products")
+    .resolve((root, args, context) => {
+        const { offset, limit, filter } = args;
+        return getProducts({ offset, limit, filter });
+    })
+    .hook({
+        options: {
+            point: "pre.query"
+        },
+        handle: function(opts){
+            return function(root, args, context){
+                // `this` is binded to the query (or mutation)
+                console.log("In query....", this._name)
+                return [root, args, context];
+            }
+        }
+    })
+    ;
+```
+
+### 4. Incoming features
 - Support subscriptions
 - Make resolving functions `hookable`. I think the design of `hapi` may be applied to Graphql services.
 - ... (your proposals)
 
 Please submit a pull request if you see anything that can be improved!
 
-### License
+### 5. License
 
 GNU GPL3
