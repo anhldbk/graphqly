@@ -1,5 +1,6 @@
-const Builder = require("./lib/schema/builder");
+const { createBuilder, pubsub } = require("./lib/schema/builder");
 
 module.exports = {
-  ...Builder
+  createBuilder,
+  pubsub
 };
