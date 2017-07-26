@@ -260,7 +260,33 @@ gBuilder
   })
   ;
 ```
+## 3.4 Logging
 
+`createBuilder` accepts configurable options. Currently, `graphqly` only allows users to configure logging capability.
+
+```js
+import { createBuilder, extra } from "graphqly";
+const gBuilder = createBuilder({
+  loggerFactory: new extra.winston.WinstonLoggerFactory()
+});
+
+// now in resolving functions, you may use functions `error`, `info`...
+gBuilder
+  .query("products(limit: Int = 20, offset: Int = 0, filter: ProductFilter): Products")
+  .resolve(function(root, args, context){
+    this.info("Accessing API `products`");
+    const { offset, limit, filter } = args;
+    return getProducts({ offset, limit, filter });
+  });
+```
+
+You may provide your own logger factories. Please have a look at directory `lib/extra/winston` for more information.
+
+By default, there's no logger factory configured. But if you configure it, in case of runtime errors in resolving functions, you may have related information printed out. For example
+
+```
+2017-07-26T13:29:49.403Z - error: [Subscription orderTimelineChanged] Filtering error. Detail: ReferenceError: _ is not defined
+```
 
 ### 4. License
 
