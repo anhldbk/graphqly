@@ -181,7 +181,7 @@ gBuilder.query(`
   products(limit: Int = 20, offset: Int = 0, filter: ProductFilter): Products
 `)
 .set("scope", ["products.read"]) // imagine we have scopes to use when authorizing requests
-.resolve((root, args, context) => {
+.resolve(function(root, args, context) {
   // your resolver here
   // `this` is binded to the current Query instance
   console.log(this.get("scope")); // will printed ["products.read"] out.
