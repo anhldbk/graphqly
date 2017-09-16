@@ -16,7 +16,11 @@
     "scripts": {
         "test": "./node_modules/.bin/mocha --reporter spec"
     },
-    "keywords": ["GraphQL", "made", "easy"],
+    "keywords": [
+        "GraphQL",
+        "made",
+        "easy"
+    ],
     "dependencies": {
         "gql": "^1.1.2",
         "graphql-subscriptions": "^0.4.4",
