@@ -1,6 +1,6 @@
 {
     "name": "graphqly",
-    "version": "0.1.9",
+    "version": "0.1.10",
     "description": "GraphQL made easy",
     "main": "index.js",
     "repository": {
