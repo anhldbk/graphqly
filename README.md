@@ -206,7 +206,14 @@ function Brand(builder){
     `);
 }
 
-gBuilder.use(Brand) // it's fun, right?
+function Product(builder){
+  // ......
+}
+
+gBuilder.use(Brand); // it's fun, right?
+
+// you can also use multiple providers
+gBuilder.use([Brand, Product]);
 ```
 
 #### 3.3 Extendability
